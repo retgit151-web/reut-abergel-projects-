@@ -1,92 +1,48 @@
-Network Research: Anonymous Enumeration
-A professional Bash-based automation tool for secure network reconnaissance. This script streamlines the process of environment setup, anonymity verification, and remote target scanning using Nmap and Whois.
+# Network Research: Anonymous Enumeration
 
-🎯 Purpose
-The script is designed to perform network scans while strictly adhering to two security principles:
+[cite_start]**Author:** Reut Abergel [cite: 1]  
+[cite_start]**Unit:** TMagen7736.38 [cite: 3] | [cite_start]**Program Code:** NX201 [cite: 4]  
+[cite_start]**Project:** Network Research [cite: 5]
 
+---
 
-Attacker Anonymity: Ensuring the user's public IP is masked via Nipe before any scanning activity begins.
+## 📖 Introduction
+[cite_start]This project is an automated network reconnaissance tool designed to streamline the intelligence-gathering phase of a security engagement[cite: 16]. [cite_start]It automates the setup of a secure environment, ensures attacker anonymity, and executes remote scans against target IP addresses[cite: 26].
 
+[cite_start]The script transforms a complex manual process—involving tool installation, IP masking, and SSH piping—into a single, automated workflow[cite: 81].
 
-Professional Documentation: Automatically generating timestamped logs and data files required for an audit trail and final engagement reports.
+## 🎯 Purpose & Key Goals
+[cite_start]The primary goal is to perform `Nmap` and `Whois` scans while strictly adhering to two security principles[cite: 77]:
 
-🛠 Features
+1.  **Attacker Anonymity:** The script verifies that the host machine is not exposing an Israeli IP ("IL"). [cite_start]If an Israeli IP is detected, it automatically utilizes **Nipe** to mask the address before proceeding[cite: 18, 78].
+2.  [cite_start]**Audit Trail & Documentation:** It generates a reliable audit trail by saving all outputs to specific data files (`whois_data.txt`, `nmap_data.txt`) and maintaining a timestamped execution log (`scan_log.txt`) [cite: 20-22, 79].
 
-Privilege Management: Automatically verifies root/sudo permissions, which are required for network operations and tool installations.
+---
 
+## 🛠 Features
+* [cite_start]**Privilege Management:** Automatically checks for Root/Sudo permissions required for network operations[cite: 19, 33].
+* [cite_start]**Dependency Management:** Automatically detects and installs missing dependencies: `nmap`, `geoip-bin`, `sshpass`, `figlet`, `nipe` [cite: 40-41].
+* **Geo-IP Anonymity Logic:** Uses `geoiplookup` to verify the country of origin. [cite_start]If "IL" is detected, it restarts Nipe and recurses until the IP is anonymous [cite: 53-54, 177-178].
+* [cite_start]**Remote Scanning:** Connects to a remote server via SSH to execute commands, decoupling the attacker from the target[cite: 26, 35].
+* [cite_start]**Centralized Logging:** Uses a custom function to append precise timestamps to every action taken by the script[cite: 22, 90].
 
-Automatic Dependency Resolution: Checks for and installs all necessary tools: nmap, geoip-bin, sshpass, figlet, and nipe.
+---
 
+## 📋 Prerequisites
+[cite_start]To run this tool successfully, you need[cite: 31]:
+* [cite_start]**Operating System:** Kali Linux (VM or hardware) to utilize `apt` for package management[cite: 32].
+* [cite_start]**Permissions:** Root or Sudo access[cite: 33].
+* [cite_start]**Connectivity:** Active internet connection for downloading tools and remote server communication[cite: 34].
+* [cite_start]**Remote Infrastructure:** A secondary Kali Linux machine or VPS with SSH access (Username, Password, and IP)[cite: 35].
 
-Geo-IP Anonymity Check: If the script detects a public IP originating from Israel ("IL"), it automatically activates Nipe to route traffic through the Tor network.
+---
 
+## 🚀 Usage Guide
 
-Remote Scanning: Connects to a remote server via SSH to perform the enumeration from a secondary location, further decoupling the attacker from the target.
+### 1. Installation & Setup
+Clone the repository and ensure the script has executable permissions.
 
-
-Centralized Logging: Uses a custom logging function to document every step with a precise timestamp.
-
-📋 Prerequisites
-
-OS: Kali Linux (for apt package management).
-
-
-Permissions: Root or Sudo access.
-
-
-Connectivity: Active internet connection.
-
-
-Remote Target: A secondary Linux machine or VPS with SSH access (IP, Username, and Password).
-
-🚀 Usage
-Clone and Prepare:
-
-Bash
-git clone <your-repository-link>
-cd <repository-folder>
-chmod +x Network_Research_Anonymous_Enumeration.sh
-Execute the Script:
-
-Bash
-sudo ./Network_Research_Anonymous_Enumeration.sh
-Provide Inputs: When prompted, enter the remote SSH credentials and the target IP address to begin the automated scan.
-
-📁 Output Files
-The script generates three local files for analysis:
-
-
-whois_data.txt: Detailed Whois information of the target.
-
-
-nmap_data.txt: Comprehensive Nmap scan results.
-
-
-scan_log.txt: A full, timestamped audit trail of the script's execution.
-
-🔍 Technical Deep Dive
-Core Functions 
-
-
-ROOT(): Validates administrative privileges to allow tool installation and network masking.
-
-
-INSTALL(): Uses dpkg and find to ensure all software dependencies are met.
-
-ANON(): Performs a Geo-IP lookup. If the country code matches "IL", it restarts Nipe and uses recursion to re-verify anonymity.
-
-
-RMSCAN(): The main engine that gathers user input, connects to the remote server using sshpass, and executes the scans.
-
-
-log_message(): A utility function that appends formatted, timestamped messages to the log file.
-
-Key Logic: IP Masking
-The script uses the following command to isolate the country code from the public IP:
-
-Bash
-CN=$(geoiplookup $(curl -s ifconfig.co) | awk '{print $4}' | tr -d ',')
-If the result is IL, the ANON function triggers the Nipe restart process.
-
-
-Developer: Reut Abergel
+### 2. Execution
+[cite_start]Run the script using sudo privileges [cite: 37-38]:
+```bash
+sudo ./Network_Research_Anonymous_Enumeration
