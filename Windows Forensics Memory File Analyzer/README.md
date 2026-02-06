@@ -1,7 +1,7 @@
 # Automated Memory Analyzer
 
 ## 1. Introduction
-An end-to-end "Dead Box" forensics automation script that streamlines the extraction and analysis of raw memory dumps. This tool integrates industry-standard
+An end-to-end forensics automation script that streamlines the extraction and analysis of raw memory dumps. This tool integrates industry-standard
 utilities to provide a rapid triage of system state and artifacts.
 
 ## 2. Key Features
