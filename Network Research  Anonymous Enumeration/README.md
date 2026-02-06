@@ -1,48 +1,22 @@
-# Network Research: Anonymous Enumeration
+# Anonymous Enumeration Tool
 
-**Author:** Reut Abergel  
-**Unit:** TMagen7736.38 | **Program Code:** NX201  
-**Project:** Network Research
+## 1. Introduction
+A security-focused network reconnaissance tool that automates Nmap and Whois scans while strictly enforcing operator anonymity. The script is built 
+on the principle of Attacker Anonymity, ensuring no scans are performed from an exposed local IP.
 
----
+## 2. Key Features
+* **Anonymity Enforcement:** Automatically detects if the public IP is from Israel if so, it utilizes Nipe to mask the address before proceeding.
+* **Recursive Verification:** Continuously verifies the network status until anonymity is confirmed.
+* **Automated Reconnaissance:** Executes Whois for domain details and Nmap for network discovery on remote targets.
+* **SSH Automation:** Uses sshpass and disabled StrictHostKeyChecking for non-interactive remote command execution.
+* **Standardized Logging:** Maintains a chronological audit trail (scan_log.txt) with precise timestamps for after-action review.
 
-## 📖 Introduction
-This project is an automated network reconnaissance tool designed to streamline the intelligence-gathering phase of a security engagement. It automates the setup of a secure environment, ensures attacker anonymity, and executes remote scans against target IP addresses.
+## 3. Technical Skills Demonstrated
+* **Network Intelligence:** Programmatic retrieval and parsing of geolocation and IP data.
+* **Automated Environment Setup:** Scripted detection, cloning, and installation of GitHub repositories and system packages.
+* **Secure Data Management:** Implementation of structured logging and data redirection streams.
 
-The script transforms a complex manual process—involving tool installation, IP masking, and SSH piping—into a single, automated workflow.
-
-## 🎯 Purpose & Key Goals
-The primary goal is to perform `Nmap` and `Whois` scans while strictly adhering to two security principles:
-
-1.  **Attacker Anonymity:** The script verifies that the host machine is not exposing an Israeli IP ("IL"). If an Israeli IP is detected, it automatically utilizes **Nipe** to mask the address before proceeding.
-2.  **Audit Trail & Documentation:** It generates a reliable audit trail by saving all outputs to specific data files (`whois_data.txt`, `nmap_data.txt`) and maintaining a timestamped execution log (`scan_log.txt`).
-
----
-
-## 🛠 Features
-* **Privilege Management:** Automatically checks for Root/Sudo permissions required for network operations.
-* **Dependency Management:** Automatically detects and installs missing dependencies: `nmap`, `geoip-bin`, `sshpass`, `figlet`, `nipe`.
-* **Geo-IP Anonymity Logic:** Uses `geoiplookup` to verify the country of origin. If "IL" is detected, it restarts Nipe and recurses until the IP is anonymous.
-* **Remote Scanning:** Connects to a remote server via SSH to execute commands, decoupling the attacker from the target.
-* **Centralized Logging:** Uses a custom function to append precise timestamps to every action taken by the script.
-
----
-
-## 📋 Prerequisites
-To run this tool successfully, you need:
-* **Operating System:** Kali Linux (VM or hardware) to utilize `apt` for package management.
-* **Permissions:** Root or Sudo access.
-* **Connectivity:** Active internet connection for downloading tools and remote server communication.
-* **Remote Infrastructure:** A secondary Kali Linux machine or VPS with SSH access (Username, Password, and IP).
-
----
-
-## 🚀 Usage Guide
-
-### 1. Installation & Setup
-Clone the repository and ensure the script has executable permissions.
-
-### 2. Execution
-Run the script using sudo privileges:
-```bash
-sudo ./Network_Research_Anonymous_Enumeration
+## 4. Requirements
+* Kali Linux.
+* Root/Sudo privileges.
+* Target SSH credentials.
